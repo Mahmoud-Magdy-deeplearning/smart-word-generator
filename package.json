@@ -1,0 +1,28 @@
+{
+  "name": "smart-word-generator",
+  "version": "1.0.0",
+  "description": "Generate specific words depending on your needs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahmoud-Magdy-deeplearning/smart-word-generator.git"
+  },
+  "keywords": [
+    "word",
+    "generator",
+    "AI",
+    "NLP"
+  ],
+  "author": "Mahmoud Magdy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahmoud-Magdy-deeplearning/smart-word-generator/issues"
+  },
+  "homepage": "https://github.com/Mahmoud-Magdy-deeplearning/smart-word-generator#readme",
+  "dependencies": {
+    "axios": "^1.2.1"
+  }
+}
