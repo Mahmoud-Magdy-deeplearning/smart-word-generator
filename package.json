@@ -1,6 +1,6 @@
 {
   "name": "smart-word-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate specific words depending on your needs",
   "main": "index.js",
   "scripts": {
