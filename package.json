@@ -1,6 +1,6 @@
 {
   "name": "@mahmoud_magdy_mahmoud/smart-word-generator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate specific words using AI (Datamuse API) depending on your needs. Fully typed with TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
