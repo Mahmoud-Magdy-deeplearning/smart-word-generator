@@ -1,9 +1,12 @@
 {
-  "name": "smart-word-generator",
-  "version": "1.0.1",
-  "description": "Generate specific words depending on your needs",
-  "main": "index.js",
+  "name": "@mahmoud_magdy_mahmoud/smart-word-generator",
+  "version": "1.1.0",
+  "description": "Generate specific words using AI (Datamuse API) depending on your needs. Fully typed with TypeScript.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,7 +17,11 @@
     "word",
     "generator",
     "AI",
-    "NLP"
+    "NLP",
+    "typescript",
+    "datamuse",
+    "synonyms",
+    "rhymes"
   ],
   "author": "Mahmoud Magdy",
   "license": "ISC",
@@ -24,5 +31,10 @@
   "homepage": "https://github.com/Mahmoud-Magdy-deeplearning/smart-word-generator#readme",
   "dependencies": {
     "axios": "^1.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
   }
 }

@@ -1,101 +1,118 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/59231851/209891435-14146604-3927-40f9-a439-73ca623a8db6.jpg">
+  <!-- <img src="./logo.png"> -->
+  <!-- Logo generation is temporarily unavailable. Place your logo here. -->
 </p>
-<p align="center"><b>A javaScript library for generating words using artificial intelligence depending on your needs.
-  </b></p>
+<h1 align="center">Smart Word Generator</h1>
+<p align="center"><b>A TypeScript library for generating words using artificial intelligence depending on your needs.</b></p>
   
 ## Description
 
-Smart word generator is a JavaScript library for generating words using artificial intelligence depending on your needs. It uses an API call to generate words that suit the use case you are facing, you can find the original API used <a href="https://www.datamuse.com/api/?fbclid=IwAR2GxnfFJqlA78kKGYtPIemRSpA45RAEWqGYCSRCxVyPsWk-0n1n9E6UoOQ" target="_blank">here</a>.
+Smart word generator is a library for generating words using artificial intelligence via the [Datamuse API](https://www.datamuse.com/api/). It allows you to find words with similar meanings, sounds, spellings, and various other relationships.
 
-<p>Under the hood, Smart-Word-generator is just working as an interface to that API with different easy callable and readable functions that would suit your use case.</p>
-
-## Philosophy
-
-<p>In recent years, thanks to AI, most of the stuff around us had been managed by AI in someway, AI has multiple fields like computer vision which is related to images and videos, that field made the computers able to see and recognize stuff then take actions depending on that, also there is another field which is NLP (Natural language processing) which is related to words, that field gave machines the ability to understand the language and generate words and sentences.
-
-And here came the idea of smart-word-generator where you do not just generate random words when you need some real data related to some area or some meaning, or when you want to fill your database with data which is meaningful, in the past, people would just go and enter the data directly if they want meaningful data, but it is the AI era, and that is why we had created smart-word-generator.
-</p>
-
-## Questions
-For questions and support please email me at: MahmoudMagdyMahmoud1@gmail.com. Or just open new issue here, and for sure, PRs are very welcomed.
+Now fully rewritten in **TypeScript** for better developer experience and type safety!
 
 ## Features
-* Generate words that have a similar meaning to the word you are providing
-* Generate words that sound like the word you are providing (the results are pronounced similarly to this string of characters).
-* Generate words are spelled like the word you are providing (the results are spelled similarly to this string of characters, or they match this wildcard pattern).
-* Generate words that appear immediately to the left of the target word in a sentence.
-* Generate words that appear immediately to the right of the target word in a sentence.
-* Provide optional parameters to get more specific data like: 
-  * maximum number of generated words
-  * the generated words should start with a specific character  
-  * the generated words should end with a specific character  
-  * the generated words should be in which type (part-of-speech) like (noun, adj, adv, v, ...etc)  
-  * the generated words should be in related to which topic
-  * the generated words should be represented as an array of words or an array of objects with extra information for each word like part of speech and the score of the word
-* In progress... 
-  
+
+* **Type-Safe**: Written in TypeScript with full type definitions.
+* **Unified API**: All functions accept a consistent options object.
+* **Rich Relationships**: Generate synonyms, antonyms, rhymes, and more.
+* **Flexible Filtering**: distinct parts of speech, topics, and patterns.
+
 ## Installation
 
 ```bash
-$ npm i smart-word-generator
+npm install smart-word-generator
 ```
-### Params which is provided to all functions by order:
-* @param  {String} The input word
-* @param {Boolean} (false by default) transformToArray Specify if true then return type array of words otherwise an array of objects include extra details
-* @param  {String} partOfSpeech Optional param to specify the part-Of-Speech of returned words 'n' for nouns, 'v' for verbs, 'adj' for adjectives, and 'adv' for adverbs
-* @param  {String} topics  Optional param to specify which category of the returned words belong to
-* @param  {String} startWith  Optional param to specify what returned words should start with
-* @param  {String} endWith  Optional param to specify what returned words should end with
-* @param  {String} max Optional param to specify the number of returned words
 
-## examples
-Generate __array of noun words__ have similar meaning to the word __'great'__   
-```sh
-const smartWordGenerator = require("smart-word-generator");
+## Usage
 
-smartWordGenerator
-  .generateWordMeansLike("great", true, "n")
-  .then((res) => console.log(res));
-# Output: ['big','corking','extraordinary', 'neat', 'bully', 'expectant', 'majuscule', 'uppercase', 'capital', 'groovy', 'pregnant', 'enceinte', 'vast', 'mega',  'massive','immense','hefty','mighty','strong','staggering','full',lot','lofty']
+Import the functions you need from the package:
+
+```typescript
+import { 
+  generateWordMeansLike, 
+  generateRhyme, 
+  generateSynonym,
+  generateAntonym,
+  generateWordSoundsLike
+} from "smart-word-generator";
 ```
-Generate __array of objects__ containing words and extra info that have spelling like the word __'flower'__   
-```sh
-const smartWordGenerator = require("smart-word-generator");
 
-smartWordGenerator
-  .generateWordSpelledLike("flower", false)
-  .then((res) => console.log(res));
-  # Output: [{word:'flower',score:67939,tags:['n']},{word:'lower',score:879,tags:['adj']},{word:'glower',score:710,tags:['n','v']},{word:'blower',score:686,tags:['n']},{word:'slower',score:163,tags:['n']},{word:'flowed',score:129,tags:['v']},{word:'frower',score:109,tags:['n']},{word:'clower',score:95,tags:['n','prop']},{word:'plower',score:57,tags:['n']},{word:'flewer',score:38},{word:'flowen',score:17,tags:['n']},{word:'fower',score:16,tags:['n']}]
+### Options Object
+
+All generator functions accept an optional `options` object:
+
+```typescript
+interface GeneratorOptions {
+  transformToArray?: boolean;   // Return string[] if true, else detailed object[]
+  partOfSpeech?: 'n' | 'v' | 'adj' | 'adv';
+  topics?: string;              // Context topics
+  startWith?: string;           // Filter words starting with...
+  endWith?: string;             // Filter words ending with...
+  max?: number;                 // Max results
+}
 ```
-Generate only __array of words__ which has __length of 5__ that sounds like the word __'flower'__ 
-```sh
-const smartWordGenerator = require("smart-word-generator");
 
-smartWordGenerator
-  .generateWordSoundsLike("flower", true, null, null, null, null, 5)
-  .then((res) => console.log(res));
-  # Output:['flower','flour','floor','flohr','flaugher']
+### Examples
+
+#### Find words with similar meaning
+```typescript
+const words = await generateWordMeansLike("great", { 
+  partOfSpeech: "adj", 
+  transformToArray: true,
+  max: 5
+});
+console.log(words); 
+// Output: ['big', 'huge', 'vast', 'large', 'grand']
 ```
-Generate only __array of words__, all of them should start with character __s__ (Note: could be a substring not only a character) that is mostly placed to the left of the word like __'computer'__ in most of the sentences. 
-```sh
-const smartWordGenerator = require("smart-word-generator");
 
-smartWordGenerator
-  .generateWordHasLeftContext("computer", true, null, null, 's')
-  .then((res) => console.log(res));
-  # Output:['science','system','systems','software','simulation','screen','simulations','society','security','services','scientists','skills','sciences','screens','storage','support','service','studies','scientist']
+#### Find Rhymes
+```typescript
+const rhymes = await generateRhyme("cat", { max: 5, transformToArray: true });
+console.log(rhymes);
+// Output: ['hat', 'bat', 'rat', 'mat', 'fat']
 ```
-Generate only __array of words__, all of them should end with character __e__ (Note: could be a substring not only a character) that is mostly placed to the left of the word like __'medicine'__ in most of the sentences. 
-```sh
-const smartWordGenerator = require("smart-word-generator");
 
-smartWordGenerator
-  .generateWordHasRightContext("medicine", true, null, null, null,'e')
-  .then((res) => console.log(res));
-  # Output: ['the','preventive','chinese','alternative','practice','some','care','reproductive','take','like','practise','state','palliative']
+#### Find Synonyms
+```typescript
+await generateSynonym("happy");
 ```
- 
-## Stay in touch
 
-* Author - [Mahmoud Magdy](MahmoudMagdyMahmoud1@gmail.com)
+#### Find Antonyms
+```typescript
+await generateAntonym("hot");
+```
+
+#### Find Words Sounding Like
+```typescript
+await generateWordSoundsLike("flower");
+```
+
+#### Find Adjectives describing a Noun
+```typescript
+// Find adjectives often used to describe 'ocean'
+await generateAdjectiveForNoun("ocean");
+```
+
+#### Find Nouns described by an Adjective
+```typescript
+// Find nouns often described as 'blue'
+await generateNounForAdjective("blue");
+```
+
+## API List
+
+* `generateWordMeansLike(word, options)`
+* `generateWordSoundsLike(word, options)`
+* `generateWordSpelledLike(word, options)`
+* `generateRhyme(word, options)`
+* `generateSynonym(word, options)`
+* `generateAntonym(word, options)`
+* `generateAdjectiveForNoun(word, options)`
+* `generateNounForAdjective(word, options)`
+* `generateWordHasLeftContext(word, options)`
+* `generateWordHasRightContext(word, options)`
+* `generateRelatedWord(word, relationCode, options)`
+
+## License
+ISC
